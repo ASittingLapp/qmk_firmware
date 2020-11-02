@@ -27,9 +27,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
     KC_TRNS        ,  KC_F1      ,  KC_F2      ,  KC_F3      ,  KC_F4      ,  KC_F5      ,                        KC_F6   ,  KC_F7          ,  KC_F8   ,  KC_F9   ,  KC_F10  ,  KC_F11  ,
-    LTCL(KC_TAB)   ,  LCTL(KC_Q) ,  LTCL(KC_W) ,  LCTL(KC_E) ,  LCTL(KC_R) ,  LCTL(KC_T) ,                        KC_TRNS ,  KC_EQL         ,  KC_MINS ,  S(KC_9) ,  S(KC_0) ,  KC_F12  ,
-    KC_TRNS        ,  LCTL(KC_A) ,  LTCL(KC_S) ,  LCTL(KC_D) ,  LCTL(KC_F) ,  LCTL(KC_G) ,                        KC_TRNS ,  LSFT(KC_GRAVE) ,  KC_GRV  ,  KC_LBRC ,  KC_RBRC ,  KC_TRNS ,
-    KC_TRNS        ,  LCTL(KC_Z) ,  LTCL(KC_X) ,  LCTL(KC_C) ,  LCTL(KC_V) ,  LCTL(KC_B) ,                        KC_TRNS ,  KC_TRNS        ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,
+    LCTL(KC_TAB)   ,  LCTL(KC_Q) ,  LCTL(KC_W) ,  LCTL(KC_E) ,  LCTL(KC_R) ,  LCTL(KC_T) ,                        KC_TRNS ,  KC_EQL         ,  KC_MINS ,  S(KC_9) ,  S(KC_0) ,  KC_F12  ,
+    KC_TRNS        ,  LCTL(KC_A) ,  LCTL(KC_S) ,  LCTL(KC_D) ,  LCTL(KC_F) ,  LCTL(KC_G) ,                        KC_TRNS ,  LSFT(KC_GRAVE) ,  KC_GRV  ,  KC_LBRC ,  KC_RBRC ,  KC_TRNS ,
+    KC_TRNS        ,  LCTL(KC_Z) ,  LCTL(KC_X) ,  LCTL(KC_C) ,  LCTL(KC_V) ,  LCTL(KC_B) ,                        KC_TRNS ,  KC_TRNS        ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,
     KC_TRNS        ,  KC_TRNS    ,  KC_TRNS    ,  KC_TRNS    ,  KC_TRNS    ,  KC_TRNS    ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_RGUI        ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS
   ),
 
@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,                       KC_TRNS ,  KC_HOME ,  KC_END  ,  KC_TRNS ,  KC_TRNS ,  KC_F12  ,
     KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_DEL  ,  KC_TRNS ,  KC_TRNS ,                       KC_LEFT ,  KC_DOWN ,  KC_UP   ,  KC_RGHT ,  KC_TRNS ,  KC_TRNS ,
     KC_LSFT ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,                       KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,
-    KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_BSPC ,  KC_LTCL , KC_ENT  ,  KC_SPC  ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS
+    KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_BSPC ,  KC_LCTL , KC_ENT  ,  KC_SPC  ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS ,  KC_TRNS
   ),
 
   [_NUMPAD] = LAYOUT(
@@ -84,24 +84,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
 };
 
-// #define _DEFAULT 0
-// #define _LOWER 1
-// #define _MEDIA 2
-// #define _GAME 3
-// #define _RESET 4
-// #define _NAV 5
-// #define _NUMPAD 6
+// #define _DEFAULT 0 -> purple
+// #define _LOWER   1 -> 0xE3
+// #define _MEDIA   2 -> green
+// #define _GAME    3 -> blue
+// #define _RESET   4 -> red
+// #define _NAV     5 -> 0xAA
+// #define _NUMPAD  6 -> 0x6A
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _LOWER:
-        rgblight_sethsv (0x18, 0xFF, 0x80);
+        rgblight_sethsv (0xE3, 0xFF, 0x80);
         break;
     case _MEDIA:
         rgblight_sethsv (0x55, 0xFF, 0x80);
         break;
     case _GAME:
         rgblight_sethsv (0xC6, 0xFF, 0x80);
+        break;
+    case _NAV:
+        rgblight_sethsv (0xAA, 0xFF, 0x80);
+        break;
+    case _NUMPAD:
+        rgblight_sethsv (0x61, 0xFF, 0x80);
         break;
     case _RESET:
         rgblight_sethsv (0x00, 0xFF, 0x80);
